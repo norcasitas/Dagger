@@ -1,19 +1,22 @@
 package com.example.daggerexample.application.di
 
 import android.content.Context
-import com.example.daggerexample.activityA.di.ActivityModule
+import com.example.daggerexample.application.AppObject
 import com.example.daggerexample.application.MainApplication
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.support.AndroidSupportInjectionModule
+import dagger.android.AndroidInjectionModule
 import javax.inject.Named
 
-@Component(modules = [
-    AppModule::class,
-    ActivityModule::class, //Adding this because I inject on mainActivty with baseComponent
-    AndroidSupportInjectionModule::class])
+@ApplicationScope
+@Component(modules = [AppModule::class, AndroidInjectionModule::class])
 interface AppComponent {
     fun inject(app: MainApplication)
+
+    @Named("graph_name_to_be_expose")
+    fun graphName() : String
+
+    fun exposeAppObject() : AppObject
 
     @Component.Builder
     interface Builder {

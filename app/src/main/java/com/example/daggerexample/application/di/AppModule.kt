@@ -10,6 +10,14 @@ class AppModule {
 
     private var index = 0
 
+    @Named("graph_name_to_be_expose")
+    @ApplicationScope
+    @Provides
+    fun provideGraphName(@Named("graph_name") graphName: String): String {
+        return graphName //this method must be Binds
+    }
+
+    @ApplicationScope
     @Provides
     fun provideSomeObjectAppScope(@Named("graph_name") graphName: String): AppObject {
         index++ //To check if the item is reusable adding an scope to this method

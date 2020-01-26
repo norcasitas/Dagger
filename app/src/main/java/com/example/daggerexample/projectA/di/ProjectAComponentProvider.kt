@@ -1,5 +1,6 @@
 package com.example.daggerexample.projectA.di
 
+import com.example.daggerexample.application.MainApplication
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -11,7 +12,10 @@ class ProjectAComponentProvider : HasAndroidInjector {
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     init {
-        DaggerProjectAComponent.factory().create().inject(this)
+        MainApplication.INSTANCE.getAppComponent()
+            .let {
+                DaggerProjectAComponent.builder().appComponent(it).graphName(" ${it.graphName()} + project-a").build().inject(this)
+            }
     }
 
     fun inject(clazz: Any) {
