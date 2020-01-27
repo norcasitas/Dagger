@@ -12,10 +12,7 @@ class ProjectAComponentProvider : HasAndroidInjector {
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     init {
-        MainApplication.INSTANCE.getAppComponent()
-            .let {
-                DaggerProjectAComponent.builder().appComponent(it).graphName(" ${it.graphName()} + project-a").build().inject(this)
-            }
+        MainApplication.INSTANCE.getAppComponent().projectASubComponent().create().inject(this)
     }
 
     fun inject(clazz: Any) {

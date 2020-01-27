@@ -1,13 +1,14 @@
 package com.example.daggerexample.projectA.di
 
-import com.example.daggerexample.projectB.di.ProjectBModule
-import com.example.daggerexample.projectB.di.ProjectBSubComponent
+import com.example.daggerexample.activityA.di.ActivityModule
 import dagger.Subcomponent
+import dagger.android.AndroidInjector
 
+@ProjectAScope
 @Subcomponent(
-    modules = [ProjectBModule::class]
+    modules = [ActivityModule::class, ProjectAModule::class]
 )
-interface ProjectASubComponent {
+interface ProjectASubComponent : AndroidInjector<ProjectAComponentProvider> {
 
     @Subcomponent.Factory
     interface Factory {

@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.daggerexample.R
 import com.example.daggerexample.application.AppObject
 import com.example.daggerexample.projectA.ObjectProjectA
+import com.example.daggerexample.projectA.ObjectProjectB
 import com.example.daggerexample.projectA.di.ProjectAComponentProvider
-import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -30,11 +30,11 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     @Inject
     lateinit var objectProjectA2: ObjectProjectA
 
-    /*@Inject
+    @Inject
     lateinit var objectProjectB1: ObjectProjectB
 
     @Inject
-    lateinit var objectProjectB2: ObjectProjectB*/
+    lateinit var objectProjectB2: ObjectProjectB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //injectFromMainApplication()
@@ -43,11 +43,11 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         setContentView(R.layout.activity_main)
     }
 
-    private fun injectFromMainApplication() {
+    /*private fun injectFromMainApplication() {
         AndroidInjection.inject(this)
         Log.d("MainActivity", "appObject1 ${appObject1.name}")
         Log.d("MainActivity", "appObject2 ${appObject2.name}")
-    }
+    }*/
 
     private fun injectFromComponentA() {
         ProjectAComponentProvider().inject(this)
@@ -55,6 +55,8 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         Log.d("MainActivity", "appObject2 ${appObject2.name}")
         Log.d("MainActivity", "objectProjectA1 ${objectProjectA1.name}")
         Log.d("MainActivity", "objectProjectA2 ${objectProjectA2.name}")
+        Log.d("MainActivity", "objectProjectB1 ${objectProjectB1.name}")
+        Log.d("MainActivity", "objectProjectB2 ${objectProjectB2.name}")
     }
 
     /*private fun injectFromComponentB() {

@@ -1,13 +1,6 @@
 package com.example.daggerexample.projectA.di
 
-import com.example.daggerexample.activityA.di.ActivityModule
-import dagger.BindsInstance
-import dagger.Component
-import dagger.android.AndroidInjectionModule
-import dagger.android.AndroidInjector
-import javax.inject.Named
-
-@ProjectAScope
+/*@ProjectAScope
 @Component(
     dependencies = [com.example.daggerexample.application.di.AppComponent::class],
     modules = [
@@ -26,4 +19,5 @@ interface ProjectAComponent : AndroidInjector<ProjectAComponentProvider> {
 
         fun build(): ProjectAComponent
     }
-}
+    }
+ */
